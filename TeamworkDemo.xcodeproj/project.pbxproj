@@ -14,6 +14,9 @@
 		558654B31F8A90BC003A49D7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 558654B21F8A90BC003A49D7 /* LaunchScreen.storyboard */; };
 		558654BA1F8AA58A003A49D7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558654B91F8AA58A003A49D7 /* LoginViewController.swift */; };
 		558654BD1F8AAEA5003A49D7 /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558654BC1F8AAEA5003A49D7 /* UIColorExtensions.swift */; };
+		558654BF1F8ACD36003A49D7 /* ApiConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558654BE1F8ACD36003A49D7 /* ApiConfig.swift */; };
+		558654C21F8ACDF3003A49D7 /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 558654C11F8ACDF3003A49D7 /* config.plist */; };
+		558654C41F8AD487003A49D7 /* TWConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558654C31F8AD487003A49D7 /* TWConfig.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +30,9 @@
 		558654B21F8A90BC003A49D7 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		558654B91F8AA58A003A49D7 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		558654BC1F8AAEA5003A49D7 /* UIColorExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
+		558654BE1F8ACD36003A49D7 /* ApiConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiConfig.swift; sourceTree = "<group>"; };
+		558654C11F8ACDF3003A49D7 /* config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = config.plist; sourceTree = "<group>"; };
+		558654C31F8AD487003A49D7 /* TWConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TWConfig.swift; sourceTree = "<group>"; };
 		D8EB76E7A3D7F3C93E6A30DB /* Pods_TeamworkDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TeamworkDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -63,6 +69,7 @@
 		5586549F1F8A8FEC003A49D7 /* TeamworkDemo */ = {
 			isa = PBXGroup;
 			children = (
+				558654C01F8ACDD9003A49D7 /* config */,
 				558654BB1F8AAE7D003A49D7 /* extensions */,
 				558654B61F8A910C003A49D7 /* delegate */,
 				558654B51F8A90FC003A49D7 /* screens */,
@@ -77,6 +84,7 @@
 		558654B41F8A90F1003A49D7 /* api */ = {
 			isa = PBXGroup;
 			children = (
+				558654BE1F8ACD36003A49D7 /* ApiConfig.swift */,
 			);
 			name = api;
 			sourceTree = "<group>";
@@ -120,6 +128,15 @@
 				558654BC1F8AAEA5003A49D7 /* UIColorExtensions.swift */,
 			);
 			name = extensions;
+			sourceTree = "<group>";
+		};
+		558654C01F8ACDD9003A49D7 /* config */ = {
+			isa = PBXGroup;
+			children = (
+				558654C11F8ACDF3003A49D7 /* config.plist */,
+				558654C31F8AD487003A49D7 /* TWConfig.swift */,
+			);
+			name = config;
 			sourceTree = "<group>";
 		};
 		BE8823AF087ECC4632B0CB9D /* Pods */ = {
@@ -204,6 +221,7 @@
 			files = (
 				558654A81F8A8FEC003A49D7 /* Assets.xcassets in Resources */,
 				558654B31F8A90BC003A49D7 /* LaunchScreen.storyboard in Resources */,
+				558654C21F8ACDF3003A49D7 /* config.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,6 +280,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				558654C41F8AD487003A49D7 /* TWConfig.swift in Sources */,
+				558654BF1F8ACD36003A49D7 /* ApiConfig.swift in Sources */,
 				558654BA1F8AA58A003A49D7 /* LoginViewController.swift in Sources */,
 				558654A31F8A8FEC003A49D7 /* ViewController.swift in Sources */,
 				558654A11F8A8FEC003A49D7 /* AppDelegate.swift in Sources */,

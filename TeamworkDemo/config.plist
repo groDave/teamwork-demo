@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>teamwork_api_key</key>
+	<string>twp_TEbBXGCnvl2HfvXWfkLUlzx92e3T</string>
+	<key>endpoints</key>
+	<dict>
+		<key>auth</key>
+		<string>https://authenticate.teamwork.com/authenticate.json</string>
+	</dict>
+</dict>
+</plist>

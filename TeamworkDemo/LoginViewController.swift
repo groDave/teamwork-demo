@@ -25,22 +25,18 @@ class LoginViewController: UIViewController {
         textField.backgroundColor = UIColor.white
         textField.autocapitalizationType = .none
         textField.autocorrectionType = .no
-        textField.placeholder = "Email Address or Api Key"
+        textField.placeholder = "Api Key"
         return textField
     }()
     
-    let textFieldPassword : UITextField =
+    let buttonAPIKey : UIButton =
     {
-        let textField = UITextField()
-        textField.keyboardType = .default
-        textField.returnKeyType = .done
-        textField.isSecureTextEntry = true
-        textField.layer.borderWidth = 1
-        textField.layer.borderColor = UIColor.white.cgColor
-        textField.layer.cornerRadius = 5
-        textField.backgroundColor = UIColor.white
-        textField.placeholder = "Password"
-        return textField
+        let button = UIButton()
+        button.setTitle("Demo API Key", for: .normal)
+        button.backgroundColor = UIColor.green
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.layer.cornerRadius = 5
+        return button
     }()
     
     let buttonLogin : UIButton =
@@ -52,6 +48,8 @@ class LoginViewController: UIViewController {
         button.layer.cornerRadius = 5
         return button
     }()
+    
+    /**  **/
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,7 +80,7 @@ class LoginViewController: UIViewController {
     private func setupViews()
     {
         self.view.addSubview(textFieldEmail)
-        self.view.addSubview(textFieldPassword)
+        self.view.addSubview(buttonAPIKey)
         self.view.addSubview(buttonLogin)
         
         //I use SnapKit for laying out my views: https://github.com/SnapKit/SnapKit
@@ -94,16 +92,17 @@ class LoginViewController: UIViewController {
             make.height.equalTo(45)
         }
         
-        textFieldPassword.snp.makeConstraints { (make) in
+        buttonAPIKey.snp.makeConstraints { (make) in
             make.left.equalTo(self.view.snp.left).offset(20)
             make.top.equalTo(textFieldEmail.snp.bottom).offset(20)
             make.right.equalTo(self.view.snp.right).offset(-20)
             make.height.equalTo(45)
         }
+        buttonAPIKey.addTarget(self, action: #selector(generateApiKey), for: .touchUpInside)
         
         buttonLogin.snp.makeConstraints { (make) in
             make.left.equalTo(self.view.snp.left).offset(20)
-            make.top.equalTo(textFieldPassword.snp.bottom).offset(20)
+            make.top.equalTo(buttonAPIKey.snp.bottom).offset(20)
             make.right.equalTo(self.view.snp.right).offset(-20)
             make.height.equalTo(45)
         }
@@ -111,6 +110,7 @@ class LoginViewController: UIViewController {
     }
     
     /** LOGIN **/
+    
     func login()
     {
         print("Logging user in")
@@ -124,6 +124,38 @@ class LoginViewController: UIViewController {
                         self?.buttonLogin.transform = .identity
             },
                        completion: nil)
+        
+        
+        let indicator: UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
+        indicator.frame = CGRect(x:0.0, y:0.0, width:60.0, height:60.0);
+        indicator.center = view.center
+        indicator.color = UIColor.white
+        indicator.backgroundColor = UIColor.gray
+        indicator.layer.cornerRadius = 5
+        view.addSubview(indicator)
+        indicator.bringSubview(toFront: view)
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        indicator.startAnimating()
+        
+        ApiConfig.shared.authUser(input: "twp_TEbBXGCnvl2HfvXWfkLUlzx92e3T") { (bool) in
+            indicator.stopAnimating()
+            if(bool){
+                let nav = UINavigationController()
+                let mainVC = ViewController()
+                nav.viewControllers = [mainVC]
+                let delegate = UIApplication.shared.delegate as! AppDelegate
+                delegate.window?.rootViewController = nav
+            } else {
+                //show error message
+            }
+        }
+    }
+    
+    /** GENERATE API KEY **/
+    
+    func generateApiKey()
+    {
+        textFieldEmail.text = "twp_TEbBXGCnvl2HfvXWfkLUlzx92e3T"
     }
     
 
