@@ -12,10 +12,25 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var mainVC : UIViewController?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.makeKeyAndVisible()
+        
+        let nav = UINavigationController()
+        
+        self.mainVC = LoginViewController()
+        application.statusBarStyle = .default
+        nav.viewControllers = [self.mainVC!]
+        self.window?.rootViewController = nav
+        
+        UINavigationBar.appearance().barTintColor = UIColor.hexToUIColor(hex: "#26282f")
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
+        UINavigationBar.appearance().tintColor = UIColor.white
+        
         return true
     }
 
