@@ -33,5 +33,10 @@ class TWConfig: NSObject {
     {
         return (endpointsDictionary!["auth"] as? String)!
     }
+    
+    func projects() -> String
+    {
+        return (endpointsDictionary!["projects"] as? String)!
+    }
 
 }

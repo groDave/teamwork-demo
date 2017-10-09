@@ -6,6 +6,8 @@
 	<string>twp_TEbBXGCnvl2HfvXWfkLUlzx92e3T</string>
 	<key>endpoints</key>
 	<dict>
+		<key>projects</key>
+		<string>projects.json</string>
 		<key>auth</key>
 		<string>https://authenticate.teamwork.com/authenticate.json</string>
 	</dict>

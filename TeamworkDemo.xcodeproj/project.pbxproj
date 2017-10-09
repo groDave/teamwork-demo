@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		221D833E4DE969BA3286803E /* Pods_TeamworkDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8EB76E7A3D7F3C93E6A30DB /* Pods_TeamworkDemo.framework */; };
+		5568F6691F8BF79100A2ABFC /* ProjectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5568F6681F8BF79100A2ABFC /* ProjectTableViewCell.swift */; };
+		5568F66B1F8BF92E00A2ABFC /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5568F66A1F8BF92E00A2ABFC /* BaseTableViewCell.swift */; };
+		5568F66E1F8BFA4300A2ABFC /* TWProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5568F66D1F8BFA4300A2ABFC /* TWProject.swift */; };
+		5568F6701F8BFA6600A2ABFC /* TWUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5568F66F1F8BFA6600A2ABFC /* TWUser.swift */; };
+		5568F6731F8C1A5F00A2ABFC /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5568F6721F8C1A5F00A2ABFC /* RealmManager.swift */; };
 		558654A11F8A8FEC003A49D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558654A01F8A8FEC003A49D7 /* AppDelegate.swift */; };
 		558654A31F8A8FEC003A49D7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558654A21F8A8FEC003A49D7 /* ViewController.swift */; };
 		558654A81F8A8FEC003A49D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 558654A71F8A8FEC003A49D7 /* Assets.xcassets */; };
@@ -22,6 +27,11 @@
 /* Begin PBXFileReference section */
 		36709BC7E75405DC683329D6 /* Pods-TeamworkDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeamworkDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TeamworkDemo/Pods-TeamworkDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		4337DD3D5D1691B2191C2393 /* Pods-TeamworkDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeamworkDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-TeamworkDemo/Pods-TeamworkDemo.release.xcconfig"; sourceTree = "<group>"; };
+		5568F6681F8BF79100A2ABFC /* ProjectTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectTableViewCell.swift; sourceTree = "<group>"; };
+		5568F66A1F8BF92E00A2ABFC /* BaseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
+		5568F66D1F8BFA4300A2ABFC /* TWProject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TWProject.swift; sourceTree = "<group>"; };
+		5568F66F1F8BFA6600A2ABFC /* TWUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TWUser.swift; sourceTree = "<group>"; };
+		5568F6721F8C1A5F00A2ABFC /* RealmManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		5586549D1F8A8FEC003A49D7 /* TeamworkDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TeamworkDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		558654A01F8A8FEC003A49D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		558654A21F8A8FEC003A49D7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -48,6 +58,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5568F6671F8BF77500A2ABFC /* cells */ = {
+			isa = PBXGroup;
+			children = (
+				5568F6681F8BF79100A2ABFC /* ProjectTableViewCell.swift */,
+				5568F66A1F8BF92E00A2ABFC /* BaseTableViewCell.swift */,
+			);
+			name = cells;
+			sourceTree = "<group>";
+		};
+		5568F66C1F8BFA0100A2ABFC /* models */ = {
+			isa = PBXGroup;
+			children = (
+				5568F66D1F8BFA4300A2ABFC /* TWProject.swift */,
+				5568F66F1F8BFA6600A2ABFC /* TWUser.swift */,
+			);
+			name = models;
+			sourceTree = "<group>";
+		};
+		5568F6711F8C1A4800A2ABFC /* realm */ = {
+			isa = PBXGroup;
+			children = (
+				5568F6721F8C1A5F00A2ABFC /* RealmManager.swift */,
+			);
+			name = realm;
+			sourceTree = "<group>";
+		};
 		558654941F8A8FEC003A49D7 = {
 			isa = PBXGroup;
 			children = (
@@ -69,6 +105,9 @@
 		5586549F1F8A8FEC003A49D7 /* TeamworkDemo */ = {
 			isa = PBXGroup;
 			children = (
+				5568F6711F8C1A4800A2ABFC /* realm */,
+				5568F66C1F8BFA0100A2ABFC /* models */,
+				5568F6671F8BF77500A2ABFC /* cells */,
 				558654C01F8ACDD9003A49D7 /* config */,
 				558654BB1F8AAE7D003A49D7 /* extensions */,
 				558654B61F8A910C003A49D7 /* delegate */,
@@ -280,9 +319,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5568F66B1F8BF92E00A2ABFC /* BaseTableViewCell.swift in Sources */,
 				558654C41F8AD487003A49D7 /* TWConfig.swift in Sources */,
+				5568F6731F8C1A5F00A2ABFC /* RealmManager.swift in Sources */,
+				5568F6691F8BF79100A2ABFC /* ProjectTableViewCell.swift in Sources */,
 				558654BF1F8ACD36003A49D7 /* ApiConfig.swift in Sources */,
 				558654BA1F8AA58A003A49D7 /* LoginViewController.swift in Sources */,
+				5568F6701F8BFA6600A2ABFC /* TWUser.swift in Sources */,
+				5568F66E1F8BFA4300A2ABFC /* TWProject.swift in Sources */,
 				558654A31F8A8FEC003A49D7 /* ViewController.swift in Sources */,
 				558654A11F8A8FEC003A49D7 /* AppDelegate.swift in Sources */,
 				558654BD1F8AAEA5003A49D7 /* UIColorExtensions.swift in Sources */,
