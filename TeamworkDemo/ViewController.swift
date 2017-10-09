@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -21,7 +22,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         view.backgroundColor = UIColor.clear
         view.layer.cornerRadius = 33 //needs to be half of the size of the view for "round"
         view.layer.masksToBounds = true //puts the corner radius into effect
-        view.contentMode = .center
+        view.contentMode = .scaleAspectFit
         view.image = UIImage (named: "placeholder.png")
         return view
     }()
@@ -47,6 +48,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         label.sizeToFit()
         return label
     }()
+    
+    let logoutButton : UIButton =
+    {
+        let button = UIButton()
+        button.setTitle("Logout", for: .normal)
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.backgroundColor = UIColor.green
+        button.layer.cornerRadius = 5
+        return button
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,6 +67,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         navigationController?.navigationBar.isTranslucent = false
         
         setupViews()
+        addUserDetails()
         downloadProjects()
     }
 
@@ -71,6 +83,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.view.addSubview(userProfilePhoto)
         self.view.addSubview(userNameLabel)
         self.view.addSubview(projectsLabel)
+        self.view.addSubview(logoutButton)
         
         userProfilePhoto.snp.makeConstraints { (make) in
             make.centerX.equalTo(self.view.snp.centerX)
@@ -93,13 +106,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             make.height.equalTo(30)
         }
         
+        logoutButton.snp.makeConstraints { (make) in
+            make.left.equalTo(self.view.snp.left).offset(20)
+            make.right.equalTo(self.view.snp.right).offset(-20)
+            make.bottom.equalTo(self.view.snp.bottom).offset(-40)
+            make.height.equalTo(40)
+        }
+        logoutButton.addTarget(self, action: #selector(logout), for: .touchUpInside)
+        
         self.view.addSubview(tableView)
         
         tableView.snp.makeConstraints { (make) in
             make.left.equalTo(self.view.snp.left)
             make.right.equalTo(self.view.snp.right)
             make.top.equalTo(self.projectsLabel.snp.bottom).offset(5)
-            make.bottom.equalTo(self.view.snp.bottom)
+            make.bottom.equalTo(logoutButton.snp.top).offset(-10)
         }
         
         tableView.separatorColor = UIColor.clear
@@ -144,11 +165,35 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         print("Row Tapped with indexPath = \(indexPath)")
     }
     
+    /** USER DETAILS **/
+    
+    private func addUserDetails()
+    {
+        RealmManager.shared.user { (user, bool) in
+            if(bool){
+                self.userProfilePhoto.sd_setImage(with: URL(string: user!.avatarUrl), placeholderImage: UIImage(named: "placeholder.png"))
+                self.userNameLabel.text = user!.firstName + " " + user!.lastname
+            }
+        }
+    }
+    
     /** DOWNLOAD PROJECTS **/
     
     private func downloadProjects()
     {
+        let indicator: UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
+        indicator.frame = CGRect(x:0.0, y:0.0, width:60.0, height:60.0);
+        indicator.center = view.center
+        indicator.color = UIColor.white
+        indicator.backgroundColor = UIColor.gray
+        indicator.layer.cornerRadius = 5
+        view.addSubview(indicator)
+        indicator.bringSubview(toFront: view)
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        indicator.startAnimating()
+        
         ApiConfig.shared.projectsForUser { (projects, bool) in
+            indicator.stopAnimating()
             if(bool){
                 print("projects returned")
                 self.projects = projects!
@@ -157,6 +202,35 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 print("No projects available")
             }
         }
+    }
+    
+    /** LOGOUT **/
+    
+    func logout()
+    {
+        let alert = UIAlertController(title: "Logout?", message: "Are you sure you want to logout? Don't worry - all your data is stored on our servers", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+            RealmManager.shared.logout { (bool) in
+                if(bool){
+                    print("Successful logout")
+                    let nav = UINavigationController()
+                    let mainVC = LoginViewController()
+                    nav.viewControllers = [mainVC]
+                    let delegate = UIApplication.shared.delegate as! AppDelegate
+                    delegate.window?.rootViewController = nav
+                } else {
+                    print("Something went wrong logging out")
+                }
+            }
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default) { _ in
+                print("Cancel")
+        }
+        
+        alert.addAction(okAction)
+        alert.addAction(cancelAction)
+        
+        self.present(alert, animated: true) {}
     }
 }
 

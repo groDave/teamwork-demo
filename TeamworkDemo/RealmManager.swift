@@ -40,8 +40,12 @@ class RealmManager: NSObject {
         // a simple logout - I just delete everything from Realm, in this case my TWUser and on completion jump back to the login
         // for a bigger project this would not be as simple - but for this and the fact we'll only ever have one user stored on Realm it will work well
         let realm = try! Realm()
-        realm.deleteAll()
-        completion(true)
+        try! realm.write {
+            realm.deleteAll()
+        }
+        if realm.isEmpty {
+            completion(true)
+        }
     }
 
 }
