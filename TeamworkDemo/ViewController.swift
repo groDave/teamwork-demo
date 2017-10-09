@@ -163,6 +163,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Row Tapped with indexPath = \(indexPath)")
+        
+        let vc = ProjectDetailViewController()
+        vc.twProject = projects[indexPath.row]
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     /** USER DETAILS **/

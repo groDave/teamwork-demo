@@ -13,6 +13,7 @@
 		5568F66E1F8BFA4300A2ABFC /* TWProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5568F66D1F8BFA4300A2ABFC /* TWProject.swift */; };
 		5568F6701F8BFA6600A2ABFC /* TWUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5568F66F1F8BFA6600A2ABFC /* TWUser.swift */; };
 		5568F6731F8C1A5F00A2ABFC /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5568F6721F8C1A5F00A2ABFC /* RealmManager.swift */; };
+		5568F6761F8C2FDE00A2ABFC /* ProjectDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5568F6751F8C2FDE00A2ABFC /* ProjectDetailViewController.swift */; };
 		558654A11F8A8FEC003A49D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558654A01F8A8FEC003A49D7 /* AppDelegate.swift */; };
 		558654A31F8A8FEC003A49D7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558654A21F8A8FEC003A49D7 /* ViewController.swift */; };
 		558654A81F8A8FEC003A49D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 558654A71F8A8FEC003A49D7 /* Assets.xcassets */; };
@@ -32,6 +33,7 @@
 		5568F66D1F8BFA4300A2ABFC /* TWProject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TWProject.swift; sourceTree = "<group>"; };
 		5568F66F1F8BFA6600A2ABFC /* TWUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TWUser.swift; sourceTree = "<group>"; };
 		5568F6721F8C1A5F00A2ABFC /* RealmManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
+		5568F6751F8C2FDE00A2ABFC /* ProjectDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectDetailViewController.swift; sourceTree = "<group>"; };
 		5586549D1F8A8FEC003A49D7 /* TeamworkDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TeamworkDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		558654A01F8A8FEC003A49D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		558654A21F8A8FEC003A49D7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -84,6 +86,14 @@
 			name = realm;
 			sourceTree = "<group>";
 		};
+		5568F6741F8C2FBB00A2ABFC /* detail */ = {
+			isa = PBXGroup;
+			children = (
+				5568F6751F8C2FDE00A2ABFC /* ProjectDetailViewController.swift */,
+			);
+			name = detail;
+			sourceTree = "<group>";
+		};
 		558654941F8A8FEC003A49D7 = {
 			isa = PBXGroup;
 			children = (
@@ -131,6 +141,7 @@
 		558654B51F8A90FC003A49D7 /* screens */ = {
 			isa = PBXGroup;
 			children = (
+				5568F6741F8C2FBB00A2ABFC /* detail */,
 				558654B81F8AA56C003A49D7 /* home */,
 				558654B71F8AA565003A49D7 /* login */,
 			);
@@ -326,6 +337,7 @@
 				558654BF1F8ACD36003A49D7 /* ApiConfig.swift in Sources */,
 				558654BA1F8AA58A003A49D7 /* LoginViewController.swift in Sources */,
 				5568F6701F8BFA6600A2ABFC /* TWUser.swift in Sources */,
+				5568F6761F8C2FDE00A2ABFC /* ProjectDetailViewController.swift in Sources */,
 				5568F66E1F8BFA4300A2ABFC /* TWProject.swift in Sources */,
 				558654A31F8A8FEC003A49D7 /* ViewController.swift in Sources */,
 				558654A11F8A8FEC003A49D7 /* AppDelegate.swift in Sources */,
