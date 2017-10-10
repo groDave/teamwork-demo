@@ -21,6 +21,8 @@ class ProjectTableViewCell: BaseTableViewCell {
         imageView.backgroundColor = UIColor.clear
         imageView.layer.cornerRadius = 33
         imageView.layer.masksToBounds = true //puts the corner radius into effect
+        imageView.layer.borderWidth = 2
+        imageView.layer.borderColor = UIColor.hexToUIColor(hex: "#26282f").cgColor
         return imageView
     }()
     

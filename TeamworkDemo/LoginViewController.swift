@@ -42,7 +42,7 @@ class LoginViewController: UIViewController {
     {
         let button = UIButton()
         button.setTitle("Demo API Key", for: .normal)
-        button.backgroundColor = UIColor.green
+        button.backgroundColor = UIColor.hexToUIColor(hex: "#00e158")
         button.setTitleColor(UIColor.white, for: .normal)
         button.layer.cornerRadius = 5
         return button
@@ -52,7 +52,7 @@ class LoginViewController: UIViewController {
     {
         let button = UIButton()
         button.setTitle("Login", for: .normal)
-        button.backgroundColor = UIColor.green
+        button.backgroundColor = UIColor.hexToUIColor(hex: "#00e158")
         button.setTitleColor(UIColor.white, for: .normal)
         button.layer.cornerRadius = 5
         return button
@@ -108,6 +108,7 @@ class LoginViewController: UIViewController {
             make.right.equalTo(self.view.snp.right).offset(-20)
             make.height.equalTo(45)
         }
+        textFieldEmail.setLeftPaddingPoints(10)
         
         buttonAPIKey.snp.makeConstraints { (make) in
             make.left.equalTo(self.view.snp.left).offset(20)
@@ -152,6 +153,7 @@ class LoginViewController: UIViewController {
         
         ApiConfig.shared.authUser(input: textFieldEmail.text!) { (bool) in
             indicator.stopAnimating()
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
             if(bool){
                 let nav = UINavigationController()
                 let mainVC = ViewController()

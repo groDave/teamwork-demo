@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 print("no user - going to login")
                 self.mainVC = LoginViewController()
             }
-            application.statusBarStyle = .default
+            application.statusBarStyle = .lightContent
             nav.viewControllers = [self.mainVC!]
             self.window?.rootViewController = nav
         }

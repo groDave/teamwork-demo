@@ -22,6 +22,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         view.backgroundColor = UIColor.clear
         view.layer.cornerRadius = 33 //needs to be half of the size of the view for "round"
         view.layer.masksToBounds = true //puts the corner radius into effect
+        view.layer.borderWidth = 2
+        view.layer.borderColor = UIColor.hexToUIColor(hex: "#26282f").cgColor
         view.contentMode = .scaleAspectFit
         view.image = UIImage (named: "placeholder.png")
         return view
@@ -55,12 +57,23 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return view
     }()
     
+    let noProjectLabel : UILabel = {
+        let label = UILabel()
+        label.text = "Hmmm seems you have no projects assigned to you!"
+        label.numberOfLines = 1
+        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.textColor = UIColor.white
+        label.textAlignment = .center
+        label.sizeToFit()
+        return label
+    }()
+    
     let logoutButton : UIButton =
     {
         let button = UIButton()
         button.setTitle("Logout", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
-        button.backgroundColor = UIColor.green
+        button.backgroundColor = UIColor.hexToUIColor(hex: "#00e158")
         button.layer.cornerRadius = 5
         return button
     }()
@@ -90,6 +103,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.view.addSubview(userNameLabel)
         self.view.addSubview(projectsLabel)
         self.view.addSubview(sepView)
+        self.view.addSubview(noProjectLabel)
         self.view.addSubview(logoutButton)
         
         userProfilePhoto.snp.makeConstraints { (make) in
@@ -119,6 +133,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             make.height.equalTo(1)
             make.top.equalTo(projectsLabel.snp.bottom).offset(5)
         }
+        
+        noProjectLabel.snp.makeConstraints { (make) in
+            make.centerY.equalTo(self.view.snp.centerY)
+            make.left.equalTo(self.view.snp.left).offset(5)
+            make.right.equalTo(self.view.snp.right).offset(-5)
+            make.height.equalTo(50)
+        }
+        noProjectLabel.isHidden = true
         
         logoutButton.snp.makeConstraints { (make) in
             make.left.equalTo(self.view.snp.left).offset(20)
@@ -216,12 +238,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         ApiConfig.shared.projectsForUser { (projects, bool) in
             indicator.stopAnimating()
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
             if(bool){
                 print("projects returned")
+                self.noProjectLabel.isHidden = true
+                self.tableView.isHidden = false
+                
                 self.projects = projects!
                 self.tableView.reloadData()
             } else {
                 print("No projects available")
+                self.noProjectLabel.isHidden = false
+                self.tableView.isHidden = true
             }
         }
     }
@@ -253,6 +281,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                     delegate.window?.rootViewController = nav
                 } else {
                     print("Something went wrong logging out")
+                    self.showSimpleAlert(message: "Something went wrong during logout - please try again!")
                 }
             }
         }
@@ -264,6 +293,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         alert.addAction(cancelAction)
         
         self.present(alert, animated: true) {}
+    }
+    
+    /** SIMPLE ALERT **/
+    
+    private func showSimpleAlert(message: String){
+        let alertController = UIAlertController(title: "Woops!", message: message, preferredStyle: UIAlertControllerStyle.alert)
+        
+        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
+            (result : UIAlertAction) -> Void in
+            print("OK")
+        }
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true, completion: nil)
     }
 }
 

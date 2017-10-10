@@ -20,6 +20,8 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
         view.layer.cornerRadius = 33 //needs to be half of the size of the view for "round"
         view.layer.masksToBounds = true //puts the corner radius into effect
         view.image = UIImage (named: "placeholder.png")
+        view.layer.borderWidth = 2
+        view.layer.borderColor = UIColor.hexToUIColor(hex: "#26282f").cgColor
         return view
     }()
     
@@ -175,6 +177,7 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
         
         ApiConfig.shared.downloadTasks(projectID: (twProject?.id)!) { (tasks, bool) in
             indicator.stopAnimating()
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
             if(bool){
                 print("tasks returned")
                 

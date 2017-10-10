@@ -25,6 +25,7 @@
 		558654BF1F8ACD36003A49D7 /* ApiConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558654BE1F8ACD36003A49D7 /* ApiConfig.swift */; };
 		558654C21F8ACDF3003A49D7 /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 558654C11F8ACDF3003A49D7 /* config.plist */; };
 		558654C41F8AD487003A49D7 /* TWConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558654C31F8AD487003A49D7 /* TWConfig.swift */; };
+		55B87C7A1F8D8BF100A8655D /* UITextFieldExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B87C791F8D8BF100A8655D /* UITextFieldExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,7 @@
 		558654BE1F8ACD36003A49D7 /* ApiConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiConfig.swift; sourceTree = "<group>"; };
 		558654C11F8ACDF3003A49D7 /* config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = config.plist; sourceTree = "<group>"; };
 		558654C31F8AD487003A49D7 /* TWConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TWConfig.swift; sourceTree = "<group>"; };
+		55B87C791F8D8BF100A8655D /* UITextFieldExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextFieldExtensions.swift; sourceTree = "<group>"; };
 		D8EB76E7A3D7F3C93E6A30DB /* Pods_TeamworkDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TeamworkDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -182,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				558654BC1F8AAEA5003A49D7 /* UIColorExtensions.swift */,
+				55B87C791F8D8BF100A8655D /* UITextFieldExtensions.swift */,
 			);
 			name = extensions;
 			sourceTree = "<group>";
@@ -348,6 +351,7 @@
 				5568F66E1F8BFA4300A2ABFC /* TWProject.swift in Sources */,
 				5568F6781F8C3BC100A2ABFC /* TWTask.swift in Sources */,
 				558654A31F8A8FEC003A49D7 /* ViewController.swift in Sources */,
+				55B87C7A1F8D8BF100A8655D /* UITextFieldExtensions.swift in Sources */,
 				558654A11F8A8FEC003A49D7 /* AppDelegate.swift in Sources */,
 				558654BD1F8AAEA5003A49D7 /* UIColorExtensions.swift in Sources */,
 			);
@@ -457,6 +461,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEVELOPMENT_TEAM = 5Q57K2YEF4;
 				INFOPLIST_FILE = TeamworkDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.groDave.TeamworkDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -472,6 +477,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEVELOPMENT_TEAM = 5Q57K2YEF4;
 				INFOPLIST_FILE = TeamworkDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.groDave.TeamworkDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
