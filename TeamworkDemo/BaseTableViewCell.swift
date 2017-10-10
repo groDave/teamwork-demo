@@ -15,7 +15,7 @@ class BaseTableViewCell: UITableViewCell {
         let label = UILabel()
         label.text = "Project Name"
         label.textColor = UIColor.white
-        label.font = UIFont.systemFont(ofSize: 14)
+        label.font = UIFont.boldSystemFont(ofSize: 14)
         label.textAlignment = .left
         label.sizeToFit()
         label.backgroundColor = UIColor.clear

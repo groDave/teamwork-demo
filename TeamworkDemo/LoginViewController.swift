@@ -87,7 +87,7 @@ class LoginViewController: UIViewController {
         
         textFieldEmail.snp.makeConstraints { (make) in
             make.left.equalTo(self.view.snp.left).offset(20)
-            make.top.equalTo(self.view.snp.top).offset(60)
+            make.centerY.equalTo(self.view.snp.centerY)
             make.right.equalTo(self.view.snp.right).offset(-20)
             make.height.equalTo(45)
         }
@@ -114,16 +114,12 @@ class LoginViewController: UIViewController {
     func login()
     {
         print("Logging user in")
-        buttonLogin.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
-        UIView.animate(withDuration: 2.0,
-                       delay: 0,
-                       usingSpringWithDamping: 0.4,
-                       initialSpringVelocity: 6.0,
-                       options: .allowUserInteraction,
-                       animations: { [weak self] in
-                        self?.buttonLogin.transform = .identity
-            },
-                       completion: nil)
+        self.springButton(button: self.buttonLogin)
+        
+        if(textFieldEmail.text == ""){
+            showSimpleAlert(message: "Oh no. You forgot to enter your API Key. If you don't have one and want to see the demo - just tap Demo API Key")
+            return
+        }
         
         
         let indicator: UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
@@ -155,7 +151,37 @@ class LoginViewController: UIViewController {
     
     func generateApiKey()
     {
+        self.springButton(button: self.buttonAPIKey)
         textFieldEmail.text = "twp_TEbBXGCnvl2HfvXWfkLUlzx92e3T"
+    }
+    
+    /** BUTTON ANIM **/
+    
+    private func springButton(button: UIButton){
+        button.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+        UIView.animate(withDuration: 2.0,
+                       delay: 0,
+                       usingSpringWithDamping: 0.4,
+                       initialSpringVelocity: 6.0,
+                       options: .allowUserInteraction,
+                       animations: {
+                        button.transform = .identity
+            },
+                       completion: nil)
+    
+    }
+    
+    /** SIMPLE ALERT **/
+    
+    private func showSimpleAlert(message: String){
+        let alertController = UIAlertController(title: "Woops!", message: message, preferredStyle: UIAlertControllerStyle.alert)
+        
+        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
+            (result : UIAlertAction) -> Void in
+            print("OK")
+        }
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true, completion: nil)
     }
     
 

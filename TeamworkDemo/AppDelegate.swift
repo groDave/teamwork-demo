@@ -22,10 +22,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let nav = UINavigationController()
         
-        self.mainVC = LoginViewController()
-        application.statusBarStyle = .default
-        nav.viewControllers = [self.mainVC!]
-        self.window?.rootViewController = nav
+        RealmManager.shared.user { (user, bool) in
+            if(bool){
+                print("user exists - auto logging in")
+                self.mainVC = ViewController()
+            } else {
+                print("no user - going to login")
+                self.mainVC = LoginViewController()
+            }
+            application.statusBarStyle = .default
+            nav.viewControllers = [self.mainVC!]
+            self.window?.rootViewController = nav
+        }
         
         UINavigationBar.appearance().barTintColor = UIColor.hexToUIColor(hex: "#26282f")
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]

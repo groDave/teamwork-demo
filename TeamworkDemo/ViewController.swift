@@ -216,6 +216,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func logout()
     {
+        logoutButton.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+        UIView.animate(withDuration: 2.0,
+                       delay: 0,
+                       usingSpringWithDamping: 0.4,
+                       initialSpringVelocity: 6.0,
+                       options: .allowUserInteraction,
+                       animations: { [weak self] in
+                        self?.logoutButton.transform = .identity
+            },
+                       completion: nil)
+        
         let alert = UIAlertController(title: "Logout?", message: "Are you sure you want to logout? Don't worry - all your data is stored on our servers", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default) { _ in
             RealmManager.shared.logout { (bool) in
