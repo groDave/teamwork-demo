@@ -217,7 +217,6 @@ class ApiConfig: NSObject {
             
             tasks.append(task)
         }
-        
         return tasks
     }
     

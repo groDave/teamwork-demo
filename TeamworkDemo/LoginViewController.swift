@@ -133,7 +133,7 @@ class LoginViewController: UIViewController {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         indicator.startAnimating()
         
-        ApiConfig.shared.authUser(input: "twp_TEbBXGCnvl2HfvXWfkLUlzx92e3T") { (bool) in
+        ApiConfig.shared.authUser(input: textFieldEmail.text!) { (bool) in
             indicator.stopAnimating()
             if(bool){
                 let nav = UINavigationController()
@@ -143,6 +143,7 @@ class LoginViewController: UIViewController {
                 delegate.window?.rootViewController = nav
             } else {
                 //show error message
+                self.showSimpleAlert(message: "Seems your API Key was incorrect. Try again, and if the problem persists contact support@teamwork.com!")
             }
         }
     }
