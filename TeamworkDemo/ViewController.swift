@@ -49,6 +49,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return label
     }()
     
+    let sepView : UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.white
+        return view
+    }()
+    
     let logoutButton : UIButton =
     {
         let button = UIButton()
@@ -63,7 +69,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.title = "Teamwork Demo"
-        self.view.backgroundColor = UIColor.hexToUIColor(hex: "#26282f")
+        self.view.backgroundColor = UIColor.hexToUIColor(hex: "#413e49")
         navigationController?.navigationBar.isTranslucent = false
         
         setupViews()
@@ -83,6 +89,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.view.addSubview(userProfilePhoto)
         self.view.addSubview(userNameLabel)
         self.view.addSubview(projectsLabel)
+        self.view.addSubview(sepView)
         self.view.addSubview(logoutButton)
         
         userProfilePhoto.snp.makeConstraints { (make) in
@@ -106,6 +113,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             make.height.equalTo(30)
         }
         
+        sepView.snp.makeConstraints { (make) in
+            make.left.equalTo(self.view.snp.left).offset(60)
+            make.right.equalTo(self.view.snp.right).offset(-60)
+            make.height.equalTo(1)
+            make.top.equalTo(projectsLabel.snp.bottom).offset(5)
+        }
+        
         logoutButton.snp.makeConstraints { (make) in
             make.left.equalTo(self.view.snp.left).offset(20)
             make.right.equalTo(self.view.snp.right).offset(-20)
@@ -119,7 +133,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.snp.makeConstraints { (make) in
             make.left.equalTo(self.view.snp.left)
             make.right.equalTo(self.view.snp.right)
-            make.top.equalTo(self.projectsLabel.snp.bottom).offset(5)
+            make.top.equalTo(sepView.snp.bottom).offset(5)
             make.bottom.equalTo(logoutButton.snp.top).offset(-10)
         }
         

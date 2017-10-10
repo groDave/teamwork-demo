@@ -14,6 +14,15 @@ class LoginViewController: UIViewController {
     
     /** Our Views **/
     
+    let logoView : UIImageView =
+    {
+        let view = UIImageView()
+        view.backgroundColor = UIColor.clear
+        view.image = UIImage (named: "teamworklogo")
+        view.contentMode = .scaleAspectFit
+        return view
+    }()
+    
     let textFieldEmail : UITextField =
     {
         let textField = UITextField()
@@ -79,11 +88,19 @@ class LoginViewController: UIViewController {
     
     private func setupViews()
     {
+        self.view.addSubview(logoView)
         self.view.addSubview(textFieldEmail)
         self.view.addSubview(buttonAPIKey)
         self.view.addSubview(buttonLogin)
         
         //I use SnapKit for laying out my views: https://github.com/SnapKit/SnapKit
+        
+        logoView.snp.makeConstraints { (make) in
+            make.top.equalTo(self.view.snp.top).offset(60)
+            make.left.equalTo(self.view.snp.left).offset(20)
+            make.right.equalTo(self.view.snp.right).offset(-20)
+            make.height.equalTo(60)
+        }
         
         textFieldEmail.snp.makeConstraints { (make) in
             make.left.equalTo(self.view.snp.left).offset(20)

@@ -34,6 +34,12 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
         return label
     }()
     
+    let sepView : UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.white
+        return view
+    }()
+    
     let noTasksLabel : UILabel = {
         let label = UILabel()
         label.text = "This project currently has no tasks.\n You're on top of things!"
@@ -51,7 +57,7 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
         // Do any additional setup after loading the view.
         
         self.title = twProject?.name
-        self.view.backgroundColor = UIColor.hexToUIColor(hex: "#26282f")
+        self.view.backgroundColor = UIColor.hexToUIColor(hex: "#413e49")
         navigationController?.navigationBar.isTranslucent = false
         
         
@@ -68,6 +74,7 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
     {
         self.view.addSubview(projectAvatar)
         self.view.addSubview(taskTitleLabel)
+        self.view.addSubview(sepView)
         self.view.addSubview(noTasksLabel)
         
         projectAvatar.snp.makeConstraints { (make) in
@@ -85,6 +92,13 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
             make.height.equalTo(30)
         }
         
+        sepView.snp.makeConstraints { (make) in
+            make.left.equalTo(self.view.snp.left).offset(60)
+            make.right.equalTo(self.view.snp.right).offset(-60)
+            make.height.equalTo(1)
+            make.top.equalTo(taskTitleLabel.snp.bottom).offset(5)
+        }
+        
         noTasksLabel.snp.makeConstraints { (make) in
             make.centerY.equalTo(self.view.snp.centerY)
             make.left.equalTo(self.view.snp.left).offset(5)
@@ -99,7 +113,7 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
         tableView.snp.makeConstraints { (make) in
             make.left.equalTo(self.view.snp.left)
             make.right.equalTo(self.view.snp.right)
-            make.top.equalTo(self.taskTitleLabel.snp.bottom).offset(5)
+            make.top.equalTo(sepView.snp.bottom).offset(5)
             make.bottom.equalTo(self.view.snp.bottom)
         }
         
