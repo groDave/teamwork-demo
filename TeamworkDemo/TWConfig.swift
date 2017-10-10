@@ -38,5 +38,10 @@ class TWConfig: NSObject {
     {
         return (endpointsDictionary!["projects"] as? String)!
     }
+    
+    func tasks(projectID: String) -> String
+    {
+        return "https://yat.teamwork.com/projects/\(projectID)/tasks.json"
+    }
 
 }

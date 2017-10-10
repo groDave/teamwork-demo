@@ -123,7 +123,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             make.bottom.equalTo(logoutButton.snp.top).offset(-10)
         }
         
-        tableView.separatorColor = UIColor.clear
+        tableView.separatorColor = UIColor.white
         tableView.backgroundColor = UIColor.clear
         tableView.dataSource = self
         tableView.delegate = self
@@ -163,6 +163,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Row Tapped with indexPath = \(indexPath)")
+        
+        let backItem = UIBarButtonItem()
+        backItem.title = "Back"
+        navigationItem.backBarButtonItem = backItem
         
         let vc = ProjectDetailViewController()
         vc.twProject = projects[indexPath.row]

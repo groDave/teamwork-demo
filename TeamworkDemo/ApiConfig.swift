@@ -26,13 +26,6 @@ class ApiConfig: NSObject {
     //input can be email or api key - for purpose of demo I will autocomplete with email
     func authUser(input: String, completion: @escaping (Bool) -> ())
     {
-//        let user = input
-//        let password = "xxx"
-//        let credentialData = "\(user):\(password)".data(using: String.Encoding.utf8)!
-//        let base64Credentials = credentialData.base64EncodedString(options: [])
-//        let headers = ["Authorization": "Basic \(base64Credentials)"]
-//        print(headers)
-        
         Alamofire.request(TWConfig.shared.auth(),
                           method: .get,
                           parameters: nil,
@@ -163,8 +156,70 @@ class ApiConfig: NSObject {
         
     }
     
+    /** TASK FUNCTIONS **/
     
+    func downloadTasks(projectID: String, completion: @escaping(Array<TWTask>?, Bool) -> ())
+    {
+        RealmManager.shared.user { (user, bool) in
+            if(bool){
+                Alamofire.request(TWConfig.shared.tasks(projectID: projectID),
+                                  method: .get,
+                                  parameters: nil,
+                                  encoding: JSONEncoding.default,
+                                  headers:self.createAuthHeader(input: user!.apiKey))
+                    .validate()
+                    .responseJSON { response in
+                        switch(response.result){
+                        case .success(let value):
+                            
+                            let json = JSON(value)
+                            print("JSON: \(json)")
+                            if(self.isSuccessfulResponse(json: json)){
+                                let tasks = self.createTasksFromJSON(json: json)
+                                if(tasks.count > 0){
+                                    completion(tasks, true)
+                                } else {
+                                    completion(nil, false)
+                                }
+                            } else {
+                                completion(nil, false)
+                            }
+                            break
+                        case .failure(let error):
+                            print(error)
+                            completion(nil, false)
+                            break
+                        }
+                }
+            } else {
+                print("No user was returned")
+                completion(nil, false)
+            }
+        }
+    }
     
+    private func createTasksFromJSON(json: JSON) -> Array<TWTask>
+    {
+        var tasks : Array<TWTask> = []
+        
+        let taskArray = json["todo-items"].arrayValue
+        
+        for i in 0 ..< taskArray.count
+        {
+            let dict = taskArray[i].dictionaryValue
+            
+            let task = TWTask()
+            task.taskID = (dict["id"]?.intValue)!
+            task.creatorImageURL = (dict["creator-avatar-url"]?.stringValue)!
+            task.createdOn = (dict["created-on"]?.stringValue)!
+            task.creatorName = (dict["creator-firstname"]?.stringValue)! + " " + (dict["creator-lastname"]?.stringValue)!
+            task.content = (dict["content"]?.stringValue)!
+            
+            tasks.append(task)
+        }
+        
+        return tasks
+    }
     
     
     /** MISC **/
