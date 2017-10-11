@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
     
     /** Our Views **/
     
@@ -109,6 +109,7 @@ class LoginViewController: UIViewController {
             make.height.equalTo(45)
         }
         textFieldEmail.setLeftPaddingPoints(10)
+        textFieldEmail.delegate = self
         
         buttonAPIKey.snp.makeConstraints { (make) in
             make.left.equalTo(self.view.snp.left).offset(20)
@@ -202,6 +203,14 @@ class LoginViewController: UIViewController {
         }
         alertController.addAction(okAction)
         self.present(alertController, animated: true, completion: nil)
+    }
+    
+    /** UITextfield delegates **/
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {   //delegate method
+        textField.resignFirstResponder()
+        
+        return true
     }
     
 
